@@ -125,5 +125,7 @@ routing_example.entity_list:
     _title: 'Routing Example Entity (Node) List View'
   requirements:
     _permission: 'access content'
-# similar could be done for:
-# -
+
+# Dynamic routes
+route_callbacks:
+    - 'routing_example.route_subscriber:routes'
