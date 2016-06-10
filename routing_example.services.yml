@@ -1,0 +1,16 @@
+services:
+  converted_param:
+    class: Drupal\routing_example\ParamConverter\RoutingExampleParamConverter
+    tags:
+      - { name: paramconverter }
+  routing_example.access:
+    class: Drupal\routing_example\Access\RoutingExampleAccess
+    arguments: ['@current_user']
+    tags:
+      - { name: access_check, applies_to: _custom_access_service }
+# Altering existing routes
+# https://www.drupal.org/node/2187643
+  routing_example.route_subscriber:
+    class: Drupal\routing_example\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,129 @@
+# Routing Example routes
+# http://symfony.com/doc/current/book/routing.html
+# https://www.drupal.org/developing/api/8/routing
+# Base Route
+routing_example.base:
+  path: '/routing-example/base'
+  defaults:
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::base'
+    _title: 'Routing Example Base'
+  requirements:
+    _permission: 'access content'
+# Parameters in routes
+# Simple Paremeter
+routing_example.parameter:
+  path: '/routing-example/parameter/{param}'
+  defaults:
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::parameter'
+    _title: 'Routing Example Parameter'
+  requirements:
+    _permission: 'access content'
+# Converted Paremeter (Upcasting paremeters).
+# https://www.drupal.org/node/2122223
+# http://www.qed42.com/blog/upcasting-menu-parameters-drupal-8
+routing_example.converted_parameter:
+  path: '/routing-example/converted-parameter/{converted_param}'
+  defaults:
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::convertedParameter'
+    _title: 'Routing Example Converted Parameter'
+  options:
+    parameters:
+      converted_param:
+        type: converted_param
+  requirements:
+    _permission: 'access content'
+# Parameter converted to an entity (object).
+# https://www.drupal.org/node/2310431
+routing_example.node_converted_parameter:
+  path: '/routing-example/node-converted-parameter/{node_converted_param}'
+  defaults:
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::nodeConvertedParameter'
+    _title: 'Routing Example Converted Parameter'
+  options:
+    parameters:
+      node_converted_param:
+        type: entity:node
+  requirements:
+    _permission: 'access content'
+# Built a tab for a node (local task).
+# https://www.drupal.org/node/2122253
+# http://orangeweb.com.au/drupal-8-local-tasks
+routing_example.node_tab:
+  path: '/node/{node}/routing-example'
+  defaults:
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::nodeTab'
+    _title: 'Routing Example Node Tab'
+  options:
+    parameters:
+     node:
+       type: entity:node
+  requirements:
+    _permission: 'access content'
+
+# Routing access
+# https://www.drupal.org/node/2122195
+# Previous routes already implemented the permission access
+# Simplified custom access checker.
+routing_example.custom_access:
+  path: '/routing-example/custom-access'
+  defaults:
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::customAccess'
+    _title: 'Routing Example Custom Access Checker'
+  requirements:
+    _custom_access: '\Drupal\routing_example\Controller\RoutingExampleController::checkAccess'
+# Service for custom access.
+# http://www.qed42.com/blog/porting-access-callbacks-drupal-8
+routing_example.custom_access_service:
+  path: '/routing-example/custom-access-service'
+  defaults:
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::base'
+    _title: 'Routing Example Custom Access Service'
+  requirements:
+    _custom_access_service: 'TRUE'
+
+# Responding to a route examples
+# Previously route examples use page controller
+# _controller: A page controller, but different response JSON
+routing_example.json:
+  path: '/routing-example/json'
+  defaults:
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::json'
+    _title: 'Routing Example JSON response'
+  requirements:
+    _permission: 'access content'
+# _form: A form controller class
+routing_example.form:
+  path: '/routing-example/form'
+  defaults:
+    _form: '\Drupal\routing_example\Form\RoutingExampleForm'
+    _title: 'Routing Example Form'
+  requirements:
+    _permission: 'access content'
+# _entity_form: Entity form handlers
+# Example of a form for editing a node.
+routing_example.entity_form:
+  path: '/routing-example/entity-form/{node}'
+  defaults:
+    _entity_form: 'node.default'
+    _title: 'Routing Example Entity (Node) Form'
+  requirements:
+    _permission: 'access content'
+# _entity_view: Entity view handlers
+# Example of a entity view for a node.
+routing_example.entity_view:
+  path: '/routing-example/entity-view/{node}'
+  defaults:
+    _entity_view: 'node.teaser'
+    _title: 'Routing Example Entity (Node) View'
+  requirements:
+    _permission: 'access content'
+# Example of a entity view for a node.
+routing_example.entity_list:
+  path: '/routing-example/entity-list'
+  defaults:
+    _entity_list: 'node'
+    _title: 'Routing Example Entity (Node) List View'
+  requirements:
+    _permission: 'access content'
+# similar could be done for:
+# -

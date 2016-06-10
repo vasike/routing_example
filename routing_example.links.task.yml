@@ -1,0 +1,6 @@
+#routing_example.node_converted_parameter:
+entity.node.node_tab:
+  route_name: routing_example.node_tab
+  base_route: entity.node.canonical
+  title: 'Routing Example Tab'
+  weight: 200

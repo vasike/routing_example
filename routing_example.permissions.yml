@@ -1,0 +1,3 @@
+# @see \Drupal\routing_example\Controller\RoutingExampleController::access
+routing example permission:
+  title: 'Routing example permission'
